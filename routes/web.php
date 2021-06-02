@@ -41,6 +41,7 @@ Route::post('/teaching-addition', [SecretaryHomeController::class, 'addTeaching'
 
 Route::get('/teacher-home', [TeacherHomeController::class, 'showTeacherHome']);
 Route::post('/student-mark-addition', [TeacherHomeController::class, 'addStudentMark']);
+Route::post('/student-attendance-addition', [TeacherHomeController::class, 'addStudentAttendance']);
 Route::post('/student-mark-modification', [TeacherHomeController::class, 'modifyStudentMark']);
 Route::post('/student-attendance-modification', [TeacherHomeController::class, 'modifyStudentAttendance']);
 

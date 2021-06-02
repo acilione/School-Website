@@ -5,12 +5,12 @@
     <script src="{{ asset('scripts/input_checks.js') }}" defer></script>
     <script src="{{ asset('scripts/client_form_validation.js') }}" defer></script>
     <script src="{{ asset('scripts/home_teacher_buttons.js') }}" defer></script>
+    <script src="{{ asset('scripts/teacher_ops.js') }}" defer></script>
     <script src="{{ asset('scripts/teacher_calendar.js') }}" defer></script>
     <script src="{{ asset('scripts/add_student_mark.js') }}" defer></script>
     <script src="{{ asset('scripts/add_student_attendance.js') }}" defer></script>
     <script src="{{ asset('scripts/teacher_students_grades_record.js') }}" defer></script>
     <script src="{{ asset('scripts/teacher_student_attendance_record.js') }}" defer></script>
-    <script src="{{ asset('scripts/teacher_ops.js') }}" defer></script>
 @endsection
 
 @section('buttons')

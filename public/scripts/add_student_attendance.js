@@ -1,6 +1,6 @@
 function postStudentAttendanceData(formData)
 {
-    return fetch('query_add_student_attendance.php', {
+    return fetch('student-attendance-addition', {
     headers: {
         "Content-Type": "application/json",
         "Accept": "application/json, text-plain, */*",
@@ -33,7 +33,25 @@ function handleStudentAttendanceSubmition(event)
         });
     }    
 }
-
+function handleAttendanceClassChange(event)
+{
+    const cfSelector = document.querySelector('#student_attending');
+    removeAllChildren(cfSelector);
+    let classNumValue = document.querySelector('#student_attending_class_num').value;
+    let classSectionValue = document.querySelector('#student_attending_class_section').value;
+    postClassGetStudents(classNumValue, classSectionValue)
+    .then(function(data){
+        const cfSelector = document.querySelector('#student_attending');
+        for (d of data)
+        {
+            const cfOption = document.createElement('option');
+            cfOption.setAttribute('value', d['cf']);
+            const cfFullNameValue = document.createTextNode(d['cf']+" - "+d['nome']+" "+d['cognome']);
+            cfSelector.appendChild(cfOption);
+            cfOption.appendChild(cfFullNameValue);
+        }
+    });
+}
 function updateAttendanceTeacherClasses(){
 getTeacherClassesNums().then(function(data)
     {
@@ -47,7 +65,7 @@ getTeacherClassesNums().then(function(data)
             numOption.appendChild(numValue)
             numOption.setAttribute('value', d['numero']);
         }
-        classNum.addEventListener('change', handleClassChange);
+        classNum.addEventListener('change', handleAttendanceClassChange);
     });
     //genera opzioni con sezioni classi relative a un dato insegnante
     getTeacherClassesSections().then(function(data)
@@ -62,8 +80,8 @@ getTeacherClassesNums().then(function(data)
             sectionOption.appendChild(sectionValue)
             sectionOption.setAttribute('value', d['sezione']);
         }
-        classSection.addEventListener('change', handleClassChange);
-        handleClassChange();
+        classSection.addEventListener('change', handleAttendanceClassChange);
+        handleAttendanceClassChange();
 
         const addStudentAttendanceForm = document.forms['add_student_attendance'];
         addStudentAttendanceForm.addEventListener('submit', handleStudentAttendanceSubmition);

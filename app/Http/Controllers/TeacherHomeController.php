@@ -3,6 +3,7 @@
     use App\Http\Controllers\Controller;
     use App\Http\Controllers\LoginController;
     use Illuminate\Http\Request;
+    use Illuminate\Database\QueryException;
 
     use App\Models\Student;
     use App\Models\StudentAttendance;
@@ -46,11 +47,39 @@
             $grade->tipologia_voto = $request->mark_type;
             try {
                 $grade->save();
-            } catch (\Illuminate\Database\QueryException $e) {
+            } catch (QueryException $e) {
                 echo json_encode($e->errorInfo['2']);
                 exit;
             }
             echo json_encode('Voto inserito correttamente!');
+        }
+        public function addStudentAttendance(Request $request)
+        {
+            if ($request->attendance_value !== 'A' && $request->attendance_value !== 'P')
+            {
+                print(json_encode('Valore presenza non valido!'));
+                exit;
+            }
+            $student_cf = $request->student_attending;
+            $student = Student::where('cf', $student_cf)->get();
+            if (!count($student))
+            {
+                print(json_encode('cf non valido!'));
+                exit;
+            }
+            else
+                $student_id = $student->first()->id;
+            $attendance = new StudentAttendance;
+            $attendance->alunno = $student_id;
+            $attendance->data = $request->attendance_date;
+            $attendance->presenza = $request->attendance_value;
+            try {
+                $attendance->save();
+            } catch (QueryException $e) {
+                echo json_encode($e->errorInfo['2']);
+                exit;
+            }
+            print(json_encode('Presenza inserita correttamente!')); 
         }
     }
 ?>
