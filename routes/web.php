@@ -67,3 +67,4 @@ Route::get('/teacher-students-attendances', [InternalAPIController::class, 'getS
 Route::get('/teacher-classes-numbers', [InternalAPIController::class, 'getTeacherClassesNumbers']);
 Route::get('/teacher-classes-sections', [InternalAPIController::class, 'getTeacherClassesSections']);
 Route::post('/teacher-class-subjects', [InternalAPIController::class, 'getTeacherClassesSubjects']);
+Route::post('/list-student-attendances', [InternalAPIController::class, 'getStudentAttendances']);

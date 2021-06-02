@@ -1,18 +1,3 @@
-function postTeacherGetSubjectsViewGradesRecord(classNum, classSection) {
-    return fetch('list_teacher_class_subjects.php', {
-	method: 'POST',
-	body: JSON.stringify({
-		numero: classNum,
-        sezione: classSection
-	}),
-	headers: {
-		'Content-type': 'application/x-www-form-urlencoded'
-	}
-    })    
-    .then(onResponse)
-    .then(onJSON)
-    .catch(onError);
-}
 function postStudentSubjectGetGrades(studentCF, subject) {
     return fetch('list_teacher_student_grades.php', {
 	method: 'POST',
@@ -92,7 +77,7 @@ function handleStudentGradesRecordClassChange()
             cfOption.appendChild(cfFullNameValue);
         }
     });
-    postTeacherGetSubjectsViewGradesRecord(classNumValue, classSectionValue)
+    postTeacherGetSubjects(classNumValue, classSectionValue)
     .then(function(data){
         let subjectSelector = document.querySelector('#subject-view-grades');
         for (d of data)

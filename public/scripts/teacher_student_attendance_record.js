@@ -1,26 +1,30 @@
-function getTeacherAttendanceRecordClassesNums() 
-{
-    return fetch('list_teacher_classes_numbers.php')
-    .then(onResponse)
-    .then(onJSON)
-    .catch(onError);
-}
-function getTeacherAttendanceRecordClassesSections() 
-{
-    return fetch('list_teacher_classes_sections.php')
-    .then(onResponse)
-    .then(onJSON)
-    .catch(onError);
-}
+//function getTeacherAttendanceRecordClassesNums() 
+//{
+//    return fetch('list_teacher_classes_numbers.php')
+//    .then(onResponse)
+//    .then(onJSON)
+//    .catch(onError);
+//}
+//function getTeacherAttendanceRecordClassesSections() 
+//{
+//    return fetch('list_teacher_classes_sections.php')
+//    .then(onResponse)
+//    .then(onJSON)
+//    .catch(onError);
+//}
 function postStudentGetAttendance(studentCF) {
-    return fetch('list_teacher_student_attendance.php', {
+    return fetch('list-student-attendances', {
+    headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json, text-plain, */*",
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRF-TOKEN": token
+    },
 	method: 'POST',
+    credentials: "same-origin",
 	body: JSON.stringify({
 		student_cf: studentCF
 	}),
-	headers: {
-		'Content-type': 'application/x-www-form-urlencoded'
-	}
     })    
     .then(onResponse)
     .then(onJSON)
@@ -28,16 +32,20 @@ function postStudentGetAttendance(studentCF) {
 }
 function postStudentModifyAttendanceData(formData)
 {
-    return fetch('query_modify_student_attendance.php', {
+    return fetch('student-attendance-modification', {
+    headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json, text-plain, */*",
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRF-TOKEN": token
+    },
     method: 'POST',
+    credentials: "same-origin",
     body: JSON.stringify({
         student_id: formData.student_modify_attendance_ID.value,
         attendance_date: formData.student_modify_attendance_date.value,
         attendance_value: formData.student_modify_attendance_value.value,
     }),
-    headers: {
-        'Content-type': 'application/x-www-form-urlencoded'
-    }
     })    
     .then(onResponse)
     .then(onJSON)
@@ -91,7 +99,7 @@ function handleTeacherAtteandanceRecordClassChange()
 function updateStudentAttendances()
 {
     //genera opzioni con numeri classi relative un dato insegnante
-    getTeacherAttendanceRecordClassesNums().then(function(data)
+    getTeacherClassesNums().then(function(data)
     {
         const classNum = document.querySelector('#student-view-attendance-class-num');
         removeAllChildren(classNum);
@@ -106,7 +114,7 @@ function updateStudentAttendances()
         classNum.addEventListener('change', handleTeacherAtteandanceRecordClassChange);
     });
     //genera opzioni con sezioni classi relative a un dato insegnante
-    getTeacherAttendanceRecordClassesSections().then(function(data)
+    getTeacherClassesSections().then(function(data)
     {
         const classSection = document.querySelector('#student-view-attendance-class-section');
         removeAllChildren(classSection);
@@ -163,7 +171,7 @@ function handleStudentToViewAttendanceOptionChange(event)
             const btn = document.createElement('input');
             btn.setAttribute('type', 'radio');
             btn.setAttribute('name', 'student-selection');
-            btn.setAttribute('value', d['id']);
+            btn.setAttribute('value', d['alunno']);
             tableRow.appendChild(btn);
             for(key in d)
             {
@@ -201,7 +209,7 @@ function showModifyStudentAttendanceForm()
         if (r.checked === true)
             checkedRow = r.parentElement;
     }
-    modifyStudentAttendanceForm.student_modify_attendance_ID.value = checkedRow.querySelector('.id').textContent;
+    modifyStudentAttendanceForm.student_modify_attendance_ID.value = checkedRow.querySelector('.alunno').textContent;
     modifyStudentAttendanceForm.student_modify_attendance_date.value = checkedRow.querySelector('.data').textContent;
 }
 function handleModifyStudentAttendanceSubmission(event)

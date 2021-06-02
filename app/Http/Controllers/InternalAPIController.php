@@ -105,5 +105,10 @@
            ->get();
             echo json_encode($teacher_classes_subjects);
         }
+        public function getStudentAttendances(Request $request)
+        {
+            $student_attendances = Student::where('cf', $request->student_cf)->first()->attendances()->get();
+            echo json_encode($student_attendances);
+        }
     }
 ?>

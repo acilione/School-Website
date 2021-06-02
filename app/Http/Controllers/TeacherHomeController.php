@@ -81,5 +81,27 @@
             }
             print(json_encode('Presenza inserita correttamente!')); 
         }
+        public function modifyStudentAttendance(Request $request)
+        {
+            if ($request->attendance_value !== "P" && $request->attendance_value !== "A")
+            {
+                echo json_encode('Valore presenza non valido');
+                exit;
+            }
+            $student_id = $request->student_id;
+            $attendance_date = $request->attendance_date;
+            $attendance_value = $request->attendance_value;
+            $attendance = StudentAttendance::where('alunno', $student_id)
+            ->where('data', $attendance_date)
+            ->first();
+            $attendance->presenza = $attendance_value;
+            try {
+                $attendance->save();
+            } catch (QueryException $e) {
+                echo json_encode($e->errorInfo);
+                exit;
+            }
+            print(json_encode('Presenza modificata correttamente!')); 
+        }
     }
 ?>
