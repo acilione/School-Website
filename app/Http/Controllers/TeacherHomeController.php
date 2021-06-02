@@ -103,5 +103,9 @@
             }
             print(json_encode('Presenza modificata correttamente!')); 
         }
+        public function modifyStudentMark()
+        {
+            //codice modifica voto alunno
+        }
     }
 ?>

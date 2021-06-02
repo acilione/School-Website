@@ -13,7 +13,7 @@
 //    .catch(onError);
 //}
 function postStudentGetAttendance(studentCF) {
-    return fetch('list-student-attendances', {
+    return fetch('student-attendances', {
     headers: {
         "Content-Type": "application/json",
         "Accept": "application/json, text-plain, */*",

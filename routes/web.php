@@ -41,8 +41,8 @@ Route::post('/teaching-addition', [SecretaryHomeController::class, 'addTeaching'
 
 Route::get('/teacher-home', [TeacherHomeController::class, 'showTeacherHome']);
 Route::post('/student-mark-addition', [TeacherHomeController::class, 'addStudentMark']);
-Route::post('/student-attendance-addition', [TeacherHomeController::class, 'addStudentAttendance']);
 Route::post('/student-mark-modification', [TeacherHomeController::class, 'modifyStudentMark']);
+Route::post('/student-attendance-addition', [TeacherHomeController::class, 'addStudentAttendance']);
 Route::post('/student-attendance-modification', [TeacherHomeController::class, 'modifyStudentAttendance']);
 
 Route::get('/principal-home', [PrincipalHomeController::class, 'index']);
@@ -67,4 +67,5 @@ Route::get('/teacher-students-attendances', [InternalAPIController::class, 'getS
 Route::get('/teacher-classes-numbers', [InternalAPIController::class, 'getTeacherClassesNumbers']);
 Route::get('/teacher-classes-sections', [InternalAPIController::class, 'getTeacherClassesSections']);
 Route::post('/teacher-class-subjects', [InternalAPIController::class, 'getTeacherClassesSubjects']);
-Route::post('/list-student-attendances', [InternalAPIController::class, 'getStudentAttendances']);
+Route::post('/student-attendances', [InternalAPIController::class, 'getStudentAttendances']);
+Route::post('/student-subject-grades', [InternalAPIController::class, 'getStudentSubjectGrades']);

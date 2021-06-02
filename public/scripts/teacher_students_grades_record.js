@@ -1,13 +1,17 @@
 function postStudentSubjectGetGrades(studentCF, subject) {
-    return fetch('list_teacher_student_grades.php', {
+    return fetch('student-subject-grades', {
+    headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json, text-plain, */*",
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRF-TOKEN": token
+    },
 	method: 'POST',
+    credentials: "same-origin",
 	body: JSON.stringify({
 		student_cf: studentCF,
         selected_subject: subject
 	}),
-	headers: {
-		'Content-type': 'application/x-www-form-urlencoded'
-	}
     })    
     .then(onResponse)
     .then(onJSON)
@@ -15,17 +19,21 @@ function postStudentSubjectGetGrades(studentCF, subject) {
 }
 function postStudentModifyMarkData(formData)
 {
-    return fetch('query_modify_student_mark.php', {
+    return fetch('student-mark-modification', {
+    headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json, text-plain, */*",
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRF-TOKEN": token
+    },
     method: 'POST',
+    credentials: "same-origin",
     body: JSON.stringify({
         student_id: formData.student_modify_grade_ID.value,
         grade_date: formData.student_modify_grade_date.value,
         subject: formData.student_modify_grade_subject.value,
         mark: formData.selection_modify_grade.value,
     }),
-    headers: {
-        'Content-type': 'application/x-www-form-urlencoded'
-    }
     })    
     .then(onResponse)
     .then(onJSON)

@@ -110,5 +110,11 @@
             $student_attendances = Student::where('cf', $request->student_cf)->first()->attendances()->get();
             echo json_encode($student_attendances);
         }
+        public function getStudentSubjectGrades(Request $request)
+        {
+            $request->student_cf;
+            $request->selected_subject;
+            //ottenere voti alunno dati cf e disciplina
+        }
     }
 ?>
