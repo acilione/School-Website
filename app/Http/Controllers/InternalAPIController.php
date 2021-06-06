@@ -14,6 +14,7 @@
     use App\Models\Subject;
     use App\Models\WeekDay;
     use App\Models\Hour;
+    use App\Models\StudentGrade;
 
     class InternalAPIController extends Controller
     {
@@ -112,9 +113,18 @@
         }
         public function getStudentSubjectGrades(Request $request)
         {
-            $request->student_cf;
-            $request->selected_subject;
+            $student_cf = $request->student_cf;
+            $selected_subject = $request->selected_subject;
             //ottenere voti alunno dati cf e disciplina
+            $student_id = Student::where('cf', $student_cf)->first('id')->id;
+            $subject_id = Subject::where('nome_disciplina', $selected_subject)->first('id')->id;
+            $student_grades = Student::find($student_id)->grades()
+            ->where('disciplina' , $subject_id)
+            ->join('alunno', 'alunno.id', '=', 'voti_attuali_alunno.alunno')
+            ->join('disciplina', 'disciplina.id', '=', 'voti_attuali_alunno.disciplina')
+            ->select('voti_attuali_alunno.alunno as alunno', 'alunno.nome', 'alunno.cognome', 'voti_attuali_alunno.voto', 'disciplina.nome_disciplina as disciplina', 'voti_attuali_alunno.data', 'voti_attuali_alunno.tipologia_voto')
+            ->get();
+            echo json_encode($student_grades);
         }
     }
 ?>

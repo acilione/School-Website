@@ -19,6 +19,16 @@
             $loginController = new LoginController();
             return $loginController->checkPageAccessAuth("home_teacher", session()->all(), "worker", "docente");    
         }
+        function student_grade_form_valid($post_data) 
+        {
+            if (
+                !((int)$post_data->mark >= 0 && (int)$post_data->mark <= 10)
+                ) {
+                    return (false);
+                }
+            else 
+              return (true);
+        }
         public function addStudentMark(Request $request)
         {
             $cf_student = $request->student_to_grade;
@@ -30,6 +40,11 @@
             }
             else
                 $student_id = $student->first()->id;
+            if (!$this->student_grade_form_valid($request))
+            {
+                echo json_encode("Campi non validi!");
+                exit;
+            }
             $subject_name = $request->subject;
             $subject = Subject::where('nome_disciplina', $subject_name)->get();
             if (!count($subject))
@@ -103,9 +118,36 @@
             }
             print(json_encode('Presenza modificata correttamente!')); 
         }
-        public function modifyStudentMark()
+        public function modifyStudentMark(Request $request)
         {
-            //codice modifica voto alunno
+            //codice modifica voto alunno            
+            $student_id = $request->student_id;
+            if (!$this->student_grade_form_valid($request))
+            {
+                echo json_encode("Campi non validi!");
+                exit;
+            }
+            $subject_name = $request->subject;
+            $subject = Subject::where('nome_disciplina', $subject_name)->get();
+            if (!count($subject))
+            {
+                echo json_encode("nome disciplina non valido!");
+                exit;
+            }
+            else
+                $subject_id = $subject->first()->id;
+            $grade = StudentGrade::where('alunno', $student_id)
+                ->where('disciplina', $subject_id)
+                ->where('data', $request->grade_date)
+                ->first();
+            $grade->voto = $request->mark;
+            try {
+                $grade->save();
+            } catch (QueryException $e) {
+                echo json_encode($e->errorInfo['2']);
+                exit;
+            }
+            echo json_encode('Voto modificato correttamente!');
         }
     }
 ?>

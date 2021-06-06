@@ -32,7 +32,7 @@ function postStudentModifyMarkData(formData)
         student_id: formData.student_modify_grade_ID.value,
         grade_date: formData.student_modify_grade_date.value,
         subject: formData.student_modify_grade_subject.value,
-        mark: formData.selection_modify_grade.value,
+        mark: formData.selection_modify_grade.value
     }),
     })    
     .then(onResponse)
@@ -137,7 +137,7 @@ function handleStudentOptionChange(event)
 {
     const cfValue = event.target.value;
     const subject = document.querySelector('#subject-view-grades').value;
-    postStudentSubjectGetGrades(cfValue, subject).then(function(data){
+    postStudentSubjectGetGrades(cfValue, subject).then(function(data) {
         const c = document.querySelector('#grades-table-block');
         c.classList.add('scrollable');
         removeAllChildren(c);
@@ -155,7 +155,7 @@ function handleStudentOptionChange(event)
         const selectionColText = document.createTextNode('select');
         selectionCol.appendChild(selectionColText);
         namesRow.appendChild(selectionCol);
-        for (key in data[0])
+        for (let key in data[0])
         {
             const option = document.createElement('option');
             option.setAttribute('value', key);
@@ -266,7 +266,7 @@ function showModifyStudentGradeForm()
         if (r.checked === true)
             checkedRow = r.parentElement;
     }
-    modifyStudentGradeForm.student_modify_grade_ID.value = checkedRow.querySelector('.id').textContent;
+    modifyStudentGradeForm.student_modify_grade_ID.value = checkedRow.querySelector('.alunno').textContent;
     modifyStudentGradeForm.student_modify_grade_name.value = checkedRow.querySelector('.nome').textContent;
     modifyStudentGradeForm.student_modify_grade_surname.value = checkedRow.querySelector('.cognome').textContent;
     modifyStudentGradeForm.student_modify_grade_subject.value = checkedRow.querySelector('.disciplina').textContent;
