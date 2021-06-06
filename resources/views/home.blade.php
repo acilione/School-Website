@@ -1,5 +1,8 @@
 @extends('layouts.guest')
 
+@section('css')
+<link rel='stylesheet' href="{{ asset('css/home.css') }}">
+@endsection
 
 @section('scripts')
 <script src="{{ asset('scripts/utils.js') }}" defer></script>
