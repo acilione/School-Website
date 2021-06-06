@@ -16,10 +16,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('/list_circulars', [HomeController::class, 'getCirculars']);
-//Route::get('list_buildings', [HomeController::class, 'getBuildings']);
-//Route::get('list_teachers', [HomeController::class, 'getTeachers']);
-
 Route::get('/index', [HomeController::class, 'showHomepage']);
 Route::get('/login', [LoginController::class, 'checkRole']);
 Route::post('/login', [LoginController::class, 'checkLogin']);

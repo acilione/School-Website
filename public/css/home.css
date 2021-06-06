@@ -1,11 +1,30 @@
+#content {
+    background-image: url("https://img.freepik.com/foto-gratis/textura-pizarra-pizarra-pizarra-verde-blanco-vacia_179068-216.jpg?size=626&ext=jpg");
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .row-title {
     text-align: center;
+    color: whitesmoke;
+}
+
+.row-div {
+    background-image: url("https://img.freepik.com/foto-gratis/textura-pizarra-pizarra-pizarra-verde-blanco-vacia_179068-216.jpg?size=626&ext=jpg");
+    border: solid;
+    border-color: black;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .div-block {
     width: 100%;
     display: flex;
     align-items: center;
+    color: white;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .div-content-block {
@@ -53,4 +72,14 @@
 
 #no-search-result {
     color: red;
+}
+
+pre {
+    white-space: pre-wrap;
+    max-width: 500px;
+}
+
+label {
+    color: white;
+    text-transform: uppercase;
 }

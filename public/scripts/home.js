@@ -193,7 +193,7 @@ function renderCircularsElements(data, appendToID, divBlockID)
         const circularTitleText = document.createTextNode(elem['titolo']);
         circularTitle.appendChild(circularTitleText);
         divContent.appendChild(circularTitle);
-        const circularParag = document.createElement('p');
+        const circularParag = document.createElement('pre');
         circularParag.classList.add('scrollable');
         const circularParagText = document.createTextNode(elem['contenuto']);
         circularParag.appendChild(circularParagText)
