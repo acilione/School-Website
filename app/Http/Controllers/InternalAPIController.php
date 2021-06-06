@@ -15,6 +15,7 @@
     use App\Models\WeekDay;
     use App\Models\Hour;
     use App\Models\StudentGrade;
+    use App\Models\StudentClassMessage;
 
     class InternalAPIController extends Controller
     {
@@ -125,6 +126,15 @@
             ->select('voti_attuali_alunno.alunno as alunno', 'alunno.nome', 'alunno.cognome', 'voti_attuali_alunno.voto', 'disciplina.nome_disciplina as disciplina', 'voti_attuali_alunno.data', 'voti_attuali_alunno.tipologia_voto')
             ->get();
             echo json_encode($student_grades);
+        }
+        public function getClassMessages()
+        {
+            $class_id = session()->get('class_id');
+            $msgs = StudentClassMessage::join('alunno', 'alunno.id', '=', 'messaggi_studenti.id_studente')
+            ->where('classe', $class_id)
+            ->select('nome', 'cognome', 'testo_messaggio', 'created_at as post_timestamp')
+            ->get();
+            echo json_encode($msgs);
         }
     }
 ?>

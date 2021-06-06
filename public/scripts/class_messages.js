@@ -1,6 +1,6 @@
 function getClassMessages() 
 {
-    return fetch('list_class_messages.php')
+    return fetch('class-messages')
     .then(onResponse)
     .then(onJSON)
     .catch(onError);
@@ -31,14 +31,18 @@ function updateClassMessages()
 }
 function sendPostMessage(msg_text)
 {
-    return fetch('add_class_message.php', {
+    return fetch('student-message-addition', {
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json, text-plain, */*",
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRF-TOKEN": token
+        },
         method: 'POST',
+        credentials: "same-origin",
         body: JSON.stringify({
             msg: msg_text,
         }),
-        headers: {
-            'Content-type': 'application/x-www-form-urlencoded'
-        }
         })    
         .then(onResponse)
         .then(onJSON)

@@ -1,17 +1,3 @@
-//function getTeacherAttendanceRecordClassesNums() 
-//{
-//    return fetch('list_teacher_classes_numbers.php')
-//    .then(onResponse)
-//    .then(onJSON)
-//    .catch(onError);
-//}
-//function getTeacherAttendanceRecordClassesSections() 
-//{
-//    return fetch('list_teacher_classes_sections.php')
-//    .then(onResponse)
-//    .then(onJSON)
-//    .catch(onError);
-//}
 function postStudentGetAttendance(studentCF) {
     return fetch('student-attendances', {
     headers: {

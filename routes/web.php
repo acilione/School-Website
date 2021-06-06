@@ -31,7 +31,7 @@ Route::get('/student-home', [StudentHomeController::class, 'showStudentHome']);
 Route::get('/student-calendar', [StudentHomeController::class, 'getStudentCalendar']);
 Route::get('/student-attendances', [StudentHomeController::class, 'getStudentAttendances']);
 Route::get('/student-grades', [StudentHomeController::class, 'getStudentGrades']);
-
+Route::post('student-message-addition', [StudentHomeController::class, 'postClassMessage']);
 
 Route::get('/secretary-home', [SecretaryHomeController::class, 'index']);
 Route::post('/student-addition', [SecretaryHomeController::class, 'addStudent']);
@@ -69,3 +69,4 @@ Route::get('/teacher-classes-sections', [InternalAPIController::class, 'getTeach
 Route::post('/teacher-class-subjects', [InternalAPIController::class, 'getTeacherClassesSubjects']);
 Route::post('/student-attendances', [InternalAPIController::class, 'getStudentAttendances']);
 Route::post('/student-subject-grades', [InternalAPIController::class, 'getStudentSubjectGrades']);
+Route::get('/class-messages', [InternalAPIController::class, 'getClassMessages']);

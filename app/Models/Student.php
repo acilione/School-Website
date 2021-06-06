@@ -21,5 +21,8 @@
         public function grades() {
             return $this->hasMany(StudentGrade::class, 'alunno');
         }
+        public function messages() {
+            return $this->hasMany(StudentClassMessage::class, 'id_studente');
+        }
     }
 ?>

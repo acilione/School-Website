@@ -8,6 +8,7 @@
     use App\Models\StudentAttendance;
     use App\Models\StudentClass;
     use App\Models\Teaching;
+    use App\Models\StudentClassMessage;
 
 
     class StudentHomeController extends Controller
@@ -41,9 +42,17 @@
             ->get(['data', 'nome_disciplina', 'voto', 'tipologia_voto']);
             echo json_encode($studentGrades);
         }
-       // public function getClassMessages()
-       // {
-       //     
-       // }
+        public function postClassMessage(Request $request)
+        {
+            $msg = new StudentClassMessage;
+            $msg->id_studente = session()->get('student_id');
+            $msg->testo_messaggio = $request->msg;
+            try {
+                $msg->save();
+            } catch (QueryException $e) {
+                echo json_encode($e->errorInfo['2']);
+                exit;
+            }
+        }
     }
 ?>
