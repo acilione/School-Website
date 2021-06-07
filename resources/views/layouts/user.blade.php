@@ -11,6 +11,7 @@
       <link rel='stylesheet' href="{{ asset('css/buttons.css') }}">
       <link rel='stylesheet' href="{{ asset('css/content_block_general.css') }}">
       <link rel="preconnect" href="https://fonts.gstatic.com" />
+      @yield('css')
       <link
         href="https://fonts.googleapis.com/css2?family=Nunito&display=swap"
         rel="stylesheet"

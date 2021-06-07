@@ -1,5 +1,10 @@
 @extends('layouts.user')
 
+@section('css')
+    <link rel='stylesheet' href="{{ asset('css/home_student.css') }}">
+@endsection
+
+
 @section('scripts')
     <script src="{{ asset('scripts/utils.js') }}" defer></script>
     <script src="{{ asset('scripts/home_student_buttons.js') }}" defer></script>

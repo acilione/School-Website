@@ -133,6 +133,7 @@
             $msgs = StudentClassMessage::join('alunno', 'alunno.id', '=', 'messaggi_studenti.id_studente')
             ->where('classe', $class_id)
             ->select('nome', 'cognome', 'testo_messaggio', 'created_at as post_timestamp')
+            ->orderBy('post_timestamp')
             ->get();
             echo json_encode($msgs);
         }
