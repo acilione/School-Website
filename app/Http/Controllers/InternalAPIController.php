@@ -38,8 +38,10 @@
         }
         public function getTeachers()
         {
-            $teachers = Worker::join('ruoli_lavoratore', 'ruoli_lavoratore.id', '=', 'lavoratore.ruolo')
-            ->where('ruoli_lavoratore.ruolo', 'docente')->get();
+            
+           $teachers = Worker::join('ruoli_lavoratore', 'ruoli_lavoratore.id', '=', 'lavoratore.ruolo')
+           ->where('ruoli_lavoratore.ruolo', 'docente')
+           ->select('lavoratore.id', 'cf', 'nome', 'cognome')->get();
             echo json_encode($teachers);
         }
         public function getClasses()

@@ -21,7 +21,7 @@
                 ->join('classe', 'classe.id', '=', 'insegnamento.classe')
                 ->join('giorni_settimana', 'giorni_settimana.id', '=', 'insegnamento.giorno_settimana')
                 ->join('disciplina', 'disciplina.id', '=', 'insegnamento.disciplina')
-                ->select('nome', 'cognome', 'profile_img', 'nome_disciplina')
+                ->select('cf', 'nome', 'cognome', 'profile_img', 'nome_disciplina')
                 ->get();
             return $teachings;
         }
