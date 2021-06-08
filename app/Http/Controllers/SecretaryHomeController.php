@@ -4,6 +4,7 @@
     use App\Http\Controllers\LoginController;
     use App\Http\Controllers\PasswordController;
     use Illuminate\Http\Request;
+    use \Illuminate\Database\QueryException;
 
     use App\Models\Student;
     use App\Models\StudentAttendance;
@@ -99,7 +100,7 @@
                         $student->sesso = $sex;
                         try {
                             $student->save();
-                        } catch (\Illuminate\Database\QueryException $e) {
+                        } catch (QueryException $e) {
                             echo json_encode($e->errorInfo['2']);
                             exit;
                         }
@@ -159,7 +160,7 @@
                         $worker->profile_img = $profile_img;
                         try {
                             $worker->save();
-                        } catch (\Illuminate\Database\QueryException $e) {
+                        } catch (QueryException $e) {
                             echo json_encode($e->errorInfo['2']);
                             exit;
                         }
@@ -215,7 +216,7 @@
                         $student->sesso = $sex;
                         try {
                             $student->save();
-                        } catch (\Illuminate\Database\QueryException $e) {
+                        } catch (QueryException $e) {
                             echo json_encode($e->errorInfo['2']);
                             exit;
                         }
@@ -243,7 +244,7 @@
                 $teaching->ora = $request->time;
                 try {
                     $teaching->save();
-                } catch (\Illuminate\Database\QueryException $e) {
+                } catch (QueryException $e) {
                     echo json_encode($e->errorInfo['2']);
                     exit;
                 }

@@ -4,6 +4,7 @@
     use App\Http\Controllers\LoginController;
     use App\Http\Controllers\InpuChecksController;
     use Illuminate\Http\Request;
+    use \Illuminate\Database\QueryException;
 
     use App\Models\Circular;
 
@@ -26,7 +27,12 @@
                     $circular->data = $request->circular_date;
                     $circular->titolo = $request->circular_title;
                     $circular->contenuto = $request->circular_content;
-                    $circular->save();
+                    try {
+                        $circular->save();
+                    } catch (QueryException $e) {
+                        echo json_encode($e->errorInfo['2']);
+                        exit;
+                    }
                     echo json_encode('Circolare inserita correttamente!');
                 }
                 else 
