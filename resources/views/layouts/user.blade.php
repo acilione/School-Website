@@ -18,10 +18,12 @@
       />
       <title>Scuola</title>
       <script src="{{ asset('scripts/requests.js') }}" defer></script>
+      <script src="{{ asset('scripts/footer.js') }}" defer></script>
       @yield('scripts')
   </head>
   <body>
     @include('layouts/header')
+    <div class="hidden" id="modal"></div>
     <section id="content">
         @yield('buttons')
         @yield('contents')

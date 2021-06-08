@@ -1,5 +1,8 @@
 @extends('layouts.guest')
 
+@section('css')
+<link rel='stylesheet' href="{{ asset('css/login.css') }}">
+@endsection
 
 @section('scripts')
 <script src="{{ asset('scripts/utils.js') }}" defer></script>
@@ -9,8 +12,9 @@
 @endsection
 @section('content')
 <section id="content">
+        <h1>SignUp</h1>
         <span class="insert-feedback-message"></span> 
-        <form name="signup_form" action="signup.php" method="post">
+        <form name="signup_form" method="post">
             <label>Codice Fiscale 
               <span class='input_error hidden cf_error'>formato cf errato</span>
               <span class='input_error hidden cf_taken_error'>cf gia' utilizzato</span>

@@ -1,5 +1,9 @@
 @extends('layouts.guest')
 
+@section('css')
+<link rel='stylesheet' href="{{ asset('css/login.css') }}">
+@endsection
+
 @section('scripts')
 <script src="{{ asset('scripts/utils.js') }}" defer></script>
 <script src="{{ asset('scripts/input_checks.js') }}" defer></script>

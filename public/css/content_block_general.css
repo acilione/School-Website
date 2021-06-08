@@ -39,10 +39,6 @@
     position: relative;
 }
 
-/*p {
-    display: flex;
-}*/
-
 a {
     cursor: pointer;
     color: royalblue;
@@ -78,4 +74,8 @@ table input[type="radio"] {
 #absences-div {
     background-image: url("https://img.freepik.com/foto-gratis/textura-pizarra-pizarra-pizarra-verde-blanco-vacia_179068-216.jpg?size=626&ext=jpg");
     color: white;
+}
+
+textarea {
+    width: 100%;
 }
