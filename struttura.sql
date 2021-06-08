@@ -143,7 +143,8 @@ CREATE TABLE `messaggi_studenti` (
   `id` int(11) primary key not null unique auto_increment,
   `id_studente` int(11) not null,
   `testo_messaggio` text not null,
-  `post_timestamp` timestamp not null default current_timestamp(),
+  `created_at` timestamp not null default current_timestamp(),
+  `updated_at` timestamp default current_timestamp(),
   index xidstudent(`id_studente`),
   foreign key(`id_studente`) references alunno(`id`) on update cascade
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
