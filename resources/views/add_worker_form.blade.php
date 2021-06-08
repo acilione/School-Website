@@ -20,10 +20,6 @@
           <span class='input_error hidden email_taken_error'>email gia' utilizzata</span>
           <input type="email" name="email">
         </label>
-        <label>Password
-          <span class='input_error hidden password_error'>formato password errato</span>
-          <input type="hidden" name="password">
-        </label>
         <label>Data Nascita
           <span class='input_error hidden date_error'>formato data errato</span>
           <input type="date" name="date" />
@@ -38,7 +34,7 @@
             <option value="docente">docente</option>
         </select>
         <label>Data Inizio Lavoro
-          <span class='input_error hidden' id='beginning_date_error'>formato data errato</span>
+          <span class='input_error hidden beginning_date_error'>formato data errato</span>
           <input type="date" name="beginning_date" />
         </label>
         <label>Url immagine del profilo

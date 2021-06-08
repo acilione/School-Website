@@ -73,6 +73,6 @@ function addListenersAddWorkerForm ()
     const dateInputField = addWorkerForm.date;
     dateInputField.addEventListener('change', handleDateInput);
 
-    const beginning_date = addWorkerForm.beginning_date;
-    dateInputField.addEventListener('change', handleDateInput);
+    const beginningDateInputField = addWorkerForm.beginning_date;
+    beginningDateInputField.addEventListener('change', handleBeginningDateInput);
 }
