@@ -25,8 +25,8 @@ Route::post('/signup', [SignupController::class, 'signup']);
 
 Route::get('/student-home', [StudentHomeController::class, 'showStudentHome']);
 Route::get('/student-calendar', [InternalAPIController::class, 'getStudentCalendar']);
-Route::get('/student-attendances', [InternalAPIController::class, 'getStudentAttendances']);
-Route::get('/student-grades', [InternalAPIController::class, 'getStudentGrades']);
+Route::post('/student-attendances', [InternalAPIController::class, 'getStudentAttendances']);
+Route::post('/student-grades', [InternalAPIController::class, 'getStudentGrades']);
 Route::post('student-message-addition', [StudentHomeController::class, 'postClassMessage']);
 
 Route::get('/secretary-home', [SecretaryHomeController::class, 'index']);

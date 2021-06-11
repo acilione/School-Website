@@ -1,20 +1,33 @@
-function getStudentAttendance() 
+function getStudentAttendanceFilteredByDateRange(formData) 
 {
-    return fetch('student-attendances')
-    .then(onResponse)
-    .then(onJSON)
-    .catch(onError);
+    return fetch('student-attendances', {
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json, text-plain, */*",
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRF-TOKEN": token
+        },
+        method: 'POST',
+        credentials: "same-origin",
+        body: JSON.stringify({
+            from_date: formData.from_date.value,
+            to_date: formData.to_date.value,
+        }),
+        })
+        .then(onResponse)
+        .then(onJSON)
+        .catch(onError);
 }
-
-function updateAttendance()
+function updateAttendance(event)
 {
-    getStudentAttendance().then(function(data){
-        const cont = document.querySelector('#student-attendance-block');
-        removeAllChildren(cont);
+    event.preventDefault();
+    getStudentAttendanceFilteredByDateRange(event.target).then(function(data){
+        const contentDiv = document.querySelector('#student-attendance-table-block');
+        removeAllChildren(contentDiv);
         const absences_array = data.filter(function(attendance_val){
             return attendance_val['presenza'] === 'A';
         });
-        const contentDiv = document.querySelector('#student-attendance-block');
+        
         const absencesNum = document.createTextNode('Numero assenze: '+absences_array.length);
         const abcensesDiv = document.createElement('div');
         abcensesDiv.setAttribute('id', 'absences-div');

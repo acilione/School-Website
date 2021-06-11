@@ -22,7 +22,6 @@ function handleFilterHomeSections(event)
         }
     }
 }
-
 function handleHomeClientSearch(event) 
 {
     let text = event.target.value.toLowerCase();

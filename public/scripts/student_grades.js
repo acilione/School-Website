@@ -1,17 +1,30 @@
 //fetch voti insegnante
-function getStudentGrades() 
+function getStudentGrades(formData) 
 {
-    return fetch('student-grades')
-    .then(onResponse)
-    .then(onJSON)
-    .catch(onError);
+    return fetch('student-grades', {
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json, text-plain, */*",
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRF-TOKEN": token
+        },
+        method: 'POST',
+        credentials: "same-origin",
+        body: JSON.stringify({
+            from_date: formData.from_date.value,
+            to_date: formData.to_date.value,
+        }),
+        })
+        .then(onResponse)
+        .then(onJSON)
+        .catch(onError);
 }
-function updateGrades()
+function updateGrades(event)
 {
-    getStudentGrades().then(function(data){
-        let cont = document.querySelector('#student-grades-block');
-        removeAllChildren(cont);
-        const contentDiv = document.querySelector('#student-grades-block');
+    event.preventDefault()
+    getStudentGrades(event.target).then(function(data){
+        const contentDiv = document.querySelector('#student-grades-table-block');
+        removeAllChildren(contentDiv);
         title = document.createElement('h2');
         table = document.createElement('table');
         table.setAttribute('id', 'student-grades-table');

@@ -11,12 +11,12 @@ function handleSelectContentBlock(event)
     else if (event.target.innerHTML.toLowerCase() === "voti")
     {
         document.querySelector('#student-grades-block').classList.remove('hidden');
-        updateGrades();
+        addFilterByDateRangeForm('student-grades-block', 'student-grades-table-block', 'filterGradesByDateRangeForm', updateGrades);
     }    
     else if (event.target.innerHTML.toLowerCase() === "presenze")
     {
         document.querySelector('#student-attendance-block').classList.remove('hidden');
-        updateAttendance();
+        addFilterByDateRangeForm('student-attendance-block', 'student-attendance-table-block', 'filterAttendancesByDateRangeForm', updateAttendance);
     }
     else if (event.target.innerHTML.toLowerCase() === "messaggi classe")
     {

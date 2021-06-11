@@ -152,17 +152,26 @@
             ->get(); 
             echo json_encode($calendar);
         }
-        public function getStudentAttendances()
+        public function getStudentAttendances(Request $request)
         {
+            $from_date = $request->from_date;
+            $to_date = $request->to_date;
             $student = Student::where('cf', session()->get('cf'))->first();
-            $studentAttendances = $student->attendances()->get(['data', 'presenza']);
+            $studentAttendances = $student->attendances()
+            ->where('data', '>=', $from_date)
+            ->where('data', '<=', $to_date)
+            ->get(['data', 'presenza']);
             echo json_encode($studentAttendances);
         }
-        public function getStudentGrades()
+        public function getStudentGrades(Request $request)
         {   
+            $from_date = $request->from_date;
+            $to_date = $request->to_date;
             $student = Student::where('cf', session()->get('cf'))->first();
             $studentGrades = $student->grades()
             ->join('disciplina', 'disciplina.id', '=', 'voti_attuali_alunno.disciplina')
+            ->where('data', '>=', $from_date)
+            ->where('data', '<=', $to_date)
             ->get(['data', 'nome_disciplina', 'voto', 'tipologia_voto']);
             echo json_encode($studentGrades);
         }
