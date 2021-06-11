@@ -22,6 +22,7 @@
         {
             $msg = new StudentClassMessage;
             $msg->id_studente = session()->get('student_id');
+            $msg->id_classe = session()->get('class_id');
             $msg->testo_messaggio = $request->msg;
             try {
                 $msg->save();

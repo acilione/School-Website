@@ -142,6 +142,7 @@ CREATE TABLE `voti_attuali_alunno` (
 CREATE TABLE `messaggi_studenti` (
   `id` int(11) primary key not null unique auto_increment,
   `id_studente` int(11) not null,
+  `id_classe` int(11) not null,
   `testo_messaggio` text not null,
   `created_at` timestamp not null default current_timestamp(),
   `updated_at` timestamp default current_timestamp(),
