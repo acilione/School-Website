@@ -24,9 +24,9 @@ Route::get('/signup', [SignupController::class, 'index']);
 Route::post('/signup', [SignupController::class, 'signup']);
 
 Route::get('/student-home', [StudentHomeController::class, 'showStudentHome']);
-Route::get('/student-calendar', [StudentHomeController::class, 'getStudentCalendar']);
-Route::get('/student-attendances', [StudentHomeController::class, 'getStudentAttendances']);
-Route::get('/student-grades', [StudentHomeController::class, 'getStudentGrades']);
+Route::get('/student-calendar', [InternalAPIController::class, 'getStudentCalendar']);
+Route::get('/student-attendances', [InternalAPIController::class, 'getStudentAttendances']);
+Route::get('/student-grades', [InternalAPIController::class, 'getStudentGrades']);
 Route::post('student-message-addition', [StudentHomeController::class, 'postClassMessage']);
 
 Route::get('/secretary-home', [SecretaryHomeController::class, 'index']);
@@ -59,10 +59,9 @@ Route::get('/subjects', [InternalAPIController::class, 'getSubjects']);
 Route::get('/week-days', [InternalAPIController::class, 'getWeekDays']);
 Route::get('/hours', [InternalAPIController::class, 'getHours']);
 Route::get('/teacher-calendar', [InternalAPIController::class, 'getTeacherCalendar']);
-Route::get('/teacher-students-attendances', [InternalAPIController::class, 'getStudentsAttendances']);
 Route::get('/teacher-classes-numbers', [InternalAPIController::class, 'getTeacherClassesNumbers']);
 Route::get('/teacher-classes-sections', [InternalAPIController::class, 'getTeacherClassesSections']);
 Route::post('/teacher-class-subjects', [InternalAPIController::class, 'getTeacherClassesSubjects']);
-Route::post('/student-attendances', [InternalAPIController::class, 'getStudentAttendances']);
+Route::post('/teacher-student-attendances', [InternalAPIController::class, 'getTeacherStudentAttendances']);
 Route::post('/student-subject-grades', [InternalAPIController::class, 'getStudentSubjectGrades']);
 Route::get('/class-messages', [InternalAPIController::class, 'getClassMessages']);

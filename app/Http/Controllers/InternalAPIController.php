@@ -73,6 +73,7 @@
             ->join('giorni_settimana', 'giorni_settimana.id', '=', 'insegnamento.giorno_settimana')
             ->where('lavoratore.cf', session()->get('cf'))
             ->select('numero as anno', 'sezione', 'nome_disciplina as disciplina', 'giorno as giorno_settimana', 'orario as ora')
+            ->orderBy('giorni_settimana.id')
             ->get();
             echo json_encode($calendar);
         }
@@ -106,10 +107,11 @@
            ->where('cf', session()->get('cf'))
            ->where('classe', $class_id)
            ->select('nome_disciplina as disciplina')
+           ->groupBy('nome_disciplina')
            ->get();
             echo json_encode($teacher_classes_subjects);
         }
-        public function getStudentAttendances(Request $request)
+        public function getTeacherStudentAttendances(Request $request)
         {
             $student_attendances = Student::where('cf', $request->student_cf)->first()->attendances()->get();
             echo json_encode($student_attendances);
@@ -138,6 +140,31 @@
             ->orderBy('post_timestamp')
             ->get();
             echo json_encode($msgs);
+        }
+        public function getStudentCalendar()
+        {
+            $calendar = StudentClass::where('id', session()->get('class_id'))->first()->teachings()
+            ->join('giorni_settimana', 'giorni_settimana.id', '=', 'insegnamento.giorno_settimana')
+            ->join('disciplina', 'disciplina.id', '=', 'insegnamento.disciplina')
+            ->join('orari', 'orari.id', '=', 'insegnamento.ora')
+            ->select('nome_disciplina', 'giorno as giorno_settimana', 'orario as ora')
+            ->orderBy('giorni_settimana.id')
+            ->get(); 
+            echo json_encode($calendar);
+        }
+        public function getStudentAttendances()
+        {
+            $student = Student::where('cf', session()->get('cf'))->first();
+            $studentAttendances = $student->attendances()->get(['data', 'presenza']);
+            echo json_encode($studentAttendances);
+        }
+        public function getStudentGrades()
+        {   
+            $student = Student::where('cf', session()->get('cf'))->first();
+            $studentGrades = $student->grades()
+            ->join('disciplina', 'disciplina.id', '=', 'voti_attuali_alunno.disciplina')
+            ->get(['data', 'nome_disciplina', 'voto', 'tipologia_voto']);
+            echo json_encode($studentGrades);
         }
     }
 ?>

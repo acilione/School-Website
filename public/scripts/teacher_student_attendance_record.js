@@ -1,5 +1,5 @@
 function postStudentGetAttendance(studentCF) {
-    return fetch('student-attendances', {
+    return fetch('teacher-student-attendances', {
     headers: {
         "Content-Type": "application/json",
         "Accept": "application/json, text-plain, */*",
