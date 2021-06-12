@@ -26,6 +26,14 @@
             ->get();
             echo json_encode($students);
         }
+        public function getAllWorkers()
+        {
+            $workers = Worker::join('ruoli_lavoratore', 'ruoli_lavoratore.id' , '=', 'lavoratore.ruolo')
+            ->select('lavoratore.id', 'cf', 'nome', 'cognome', 'email', 'data_nascita', 'eta', 'ruoli_lavoratore.ruolo', 'inizio', 'sesso', 'profile_img')
+            ->get();
+            echo json_encode($workers);
+        }
+
         public function getClassStudents(Request $request)
         {
             if((session()->get('role') === 'docente') && !empty($request->numero) && !empty($request->sezione))

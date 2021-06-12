@@ -253,5 +253,60 @@
             else
                 print(json_encode('Inserire tutti i campi!'));
         }
+        public function modifyWorker(Request $request)
+        {
+            if(!empty($request->input('cf'))) 
+            {
+                if (!$this->addWorkerFormIsValid($request->all()))
+                {
+                    echo json_encode('campi non validi!');
+                    exit;
+                }
+                else
+                {
+                    $id = $request->id;
+                    $cf_capitalized = strtoupper($request->input('cf'));
+                    $email = $request->input('email');
+                    $name = $request->input('name');
+                    $surname = $request->input('surname');
+                    $date = $request->input('date');
+                    $diff = abs(strtotime($date) - strtotime(date("Y-m-d"))); 
+                    $age = floor($diff / (365*60*60*24)); 
+                    $sex = $request->input('sex');
+                    $role_inserted =  $request->input('role');
+                    $beginning_date = $request->input('beginning_date');
+                    $profile_img = $request->input('profile_img');
+                    $role = Role::where('ruolo', $role_inserted)->get();
+                    if (!count($role))
+                    {
+                        echo json_encode('ruolo non valido!');
+                        exit;
+                    }
+                    else
+                    {
+                        $worker = Worker::find($id);
+                        $worker->cf = $cf_capitalized;
+                        $worker->email = $email;
+                        $worker->nome = $name;
+                        $worker->cognome = $surname;
+                        $worker->data_nascita = $date;
+                        $worker->eta = $age;
+                        $worker->ruolo = $role->first()->id;
+                        $worker->sesso = $sex;
+                        $worker->inizio = $beginning_date;
+                        $worker->profile_img = $profile_img;
+                        try {
+                            $worker->save();
+                        } catch (QueryException $e) {
+                            echo json_encode($e->errorInfo['2']);
+                            exit;
+                        }
+                        print(json_encode("Lavoratore modificato correttamente!"));
+                    }
+                }
+            }
+            else
+                echo json_encode('Inserire codice fiscale!');
+        }
     }
 ?>

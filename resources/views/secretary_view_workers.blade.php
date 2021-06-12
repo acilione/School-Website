@@ -1,7 +1,14 @@
-<div class="content-block" id="add-worker-form-block">
+<div class="content-block" id="view-workers-block">
     <h2>aggiungi lavoratore</h2>
+    <input type="text" name="rows_filter_search" id="workers-rows-filter-bar" placeholder="Filter Workers">
+    <select name="filter_value" id="workers-filter-options"></select>
+    <a class='btn' id="modify-worker-btn">Modifica</a>
+    <div id='workers-table-block'></div>
     <span class="insert-feedback-message"></span>  
-    <form name="add_worker" method="post">
+    <form name="modify_worker" method="post">
+        <label>ID 
+            <input name="id" readonly>
+        </label>
         <label>Codice Fiscale
           <span class='input_error hidden cf_error'>formato cf errato</span>
           <span class='input_error hidden cf_taken_error'>cf gia' utilizzato</span>
@@ -24,19 +31,15 @@
           <span class='input_error hidden date_error'>formato data errato</span>
           <input type="date" name="date" />
         </label>
-        <label>Sesso
         <select name="sex">
             <option value="M">M</option>
             <option value="F">F</option>
         </select>
-        </label>
-        <label>Ruolo
         <select name="role">
             <option value="preside">preside</option>
             <option value="segretario">segretario</option>
             <option value="docente">docente</option>
         </select>
-        </label>
         <label>Data Inizio Lavoro
           <span class='input_error hidden beginning_date_error'>formato data errato</span>
           <input type="date" name="beginning_date" />

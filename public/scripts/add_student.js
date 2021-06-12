@@ -56,17 +56,17 @@ function handleStudentSubmition(event)
 addStudentForm = document.forms['add_student'];
 addStudentForm.addEventListener('submit', handleStudentSubmition);
 
-cfInputField = addStudentForm.cf;
+let cfInputField = addStudentForm.cf;
 cfInputField.addEventListener('keyup', handleCfInput);
 
-nameInputField = addStudentForm.name;
+let nameInputField = addStudentForm.name;
 nameInputField.addEventListener('keyup', handleNameInput);
 
-surnameInputField = addStudentForm.surname;
+let surnameInputField = addStudentForm.surname;
 surnameInputField.addEventListener('keyup', handleSurnameInput);
 
-emailInputField = addStudentForm.email;
+let emailInputField = addStudentForm.email;
 emailInputField.addEventListener('keyup', handleEmailInput);
 
-dateInputField = addStudentForm.date;
+let dateInputField = addStudentForm.date;
 dateInputField.addEventListener('change', handleDateInput);

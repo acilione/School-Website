@@ -1,22 +1,22 @@
-function getStudentsListJson() 
+function getWorkersListJson() 
 {
-    return fetch('all-students')
+    return fetch('all-workers')
     .then(onResponse)
     .then(onJSON)
     .catch(onError);
 }
-function updateStudentsList() 
+function updateWorkersList() 
 {
-    getStudentsListJson().then(function(data){
-        const c = document.querySelector('#students-table-block');
+    getWorkersListJson().then(function(data){
+        const c = document.querySelector('#workers-table-block');
         c.classList.add('scrollable');
         removeAllChildren(c);
-        const studentsFilterOptions = document.querySelector('#students-filter-options');
-        removeAllChildren(studentsFilterOptions);
-        const contentDiv = document.querySelector('#students-table-block');
+        const workersFilterOptions = document.querySelector('#workers-filter-options');
+        removeAllChildren(workersFilterOptions);
+        const contentDiv = document.querySelector('#workers-table-block');
         const title = document.createElement('h2');
         const table = document.createElement('table');
-        table.setAttribute('id', 'students-list');
+        table.setAttribute('id', 'workers-list');
         contentDiv.appendChild(title);
         contentDiv.appendChild(table);
         const namesRow = document.createElement('tr');
@@ -31,7 +31,7 @@ function updateStudentsList()
             option.setAttribute('value', key);
             const optionText = document.createTextNode(key);
             option.appendChild(optionText)
-            studentsFilterOptions.appendChild(option);
+            workersFilterOptions.appendChild(option);
             const column = document.createElement('th');
             const colValue = document.createTextNode(key);
             namesRow.appendChild(column);
@@ -59,10 +59,10 @@ function updateStudentsList()
         checkRadioButtonSelectedShowModifyBtn();
     })
 }
-function filterStudentsTableRows(string, column_class)
+function filterWorkersTableRows(string, column_class)
 {
     let text = string.toLowerCase();
-    let rows = document.querySelectorAll('#students-table-block #students-list tr');
+    let rows = document.querySelectorAll('#workers-table-block #workers-list tr');
     if (text !== "") {
         for(let i=1; i<rows.length; i++){
             let row_content = rows[i].querySelector('.'+column_class).textContent.toLowerCase();
@@ -82,8 +82,8 @@ function filterStudentsTableRows(string, column_class)
 }
 function handleSearch(event) 
 {
-    const filter_opt = document.querySelector('#students-filter-options').value;
-    filterStudentsTableRows(event.target.value, filter_opt);
+    const filter_opt = document.querySelector('#workers-filter-options').value;
+    filterWorkersTableRows(event.target.value, filter_opt);
 }
 function radioButtonIsChecked()
 {
@@ -97,31 +97,32 @@ function radioButtonIsChecked()
 }
 function checkRadioButtonSelectedShowModifyBtn()
 {
-    showElementOnCondition(radioButtonIsChecked(), modifyStudentButton);
+    showElementOnCondition(radioButtonIsChecked(), modifyWorkerButton);
 }
-function showModifyStudentForm()
+function showModifyWorkerForm()
 {
-    modify_student_form = document.querySelector('form[name=modify_student]')
-    modify_student_form.classList.remove('hidden');
+    modify_worker_form = document.querySelector('form[name=modify_worker]')
+    modify_worker_form.classList.remove('hidden');
     radioButtons = document.querySelectorAll('input[type=radio]');
     for (r of radioButtons)
     {
         if (r.checked === true)
             checkedRow = r.parentElement;
     }
-    modify_student_form.student_id.value = checkedRow.querySelector('.id').textContent;
-    modify_student_form.cf.value = checkedRow.querySelector('.cf').textContent;
-    modify_student_form.name.value = checkedRow.querySelector('.nome').textContent;
-    modify_student_form.surname.value = checkedRow.querySelector('.cognome').textContent;
-    modify_student_form.email.value = checkedRow.querySelector('.email').textContent;
-    modify_student_form.date.value = checkedRow.querySelector('.data_nascita').textContent;
-    modify_student_form.sex.value = checkedRow.querySelector('.sesso').textContent;
-    modify_student_form.class_num.value = checkedRow.querySelector('.numero').textContent;
-    modify_student_form.class_section.value = checkedRow.querySelector('.sezione').textContent;
+    modify_worker_form.id.value = checkedRow.querySelector('.id').textContent;
+    modify_worker_form.cf.value = checkedRow.querySelector('.cf').textContent;
+    modify_worker_form.name.value = checkedRow.querySelector('.nome').textContent;
+    modify_worker_form.surname.value = checkedRow.querySelector('.cognome').textContent;
+    modify_worker_form.email.value = checkedRow.querySelector('.email').textContent;
+    modify_worker_form.date.value = checkedRow.querySelector('.data_nascita').textContent;
+    modify_worker_form.sex.value = checkedRow.querySelector('.sesso').textContent;
+    modify_worker_form.role.value = checkedRow.querySelector('.ruolo').textContent;
+    modify_worker_form.beginning_date.value = checkedRow.querySelector('.inizio').textContent;
+    modify_worker_form.profile_img.value = checkedRow.querySelector('.profile_img').textContent;
 }
-function postModifyStudentData(formData)
+function postModifyWorkerData(formData)
 {
-    return fetch('student-modification', {
+    return fetch('worker-modification', {
     headers: {
         "Content-Type": "application/json",
         "Accept": "application/json, text-plain, */*",
@@ -131,22 +132,23 @@ function postModifyStudentData(formData)
     method: 'POST',
     credentials: "same-origin",
     body: JSON.stringify({
-        student_id: formData.student_id.value,
+        id: formData.id.value,
         cf: formData.cf.value,
         email: formData.email.value,
         name: formData.name.value,
         surname: formData.surname.value,
-        class_num: formData.class_num.value,
-        class_section: formData.class_section.value,
         date: formData.date.value,
-        sex: formData.sex.value
+        sex: formData.sex.value,
+        role: formData.role.value,
+        beginning_date: formData.beginning_date.value,
+        profile_img: formData.profile_img.value
     }),
-    })   
+    })    
     .then(onResponse)
     .then(onJSON)
     .catch(onError);
 }
-function handleModifyStudentSubmission(event)
+function handleModifyWorkerSubmission(event)
 {
     event.preventDefault();
     if (
@@ -169,21 +171,31 @@ function handleModifyStudentSubmission(event)
     }
     else 
     {
-        postModifyStudentData(event.target).then((data) => {
-            updateFeedbackMessageSpanContent('view-students-block', data);
+        postModifyWorkerData(event.target).then((data) => {
+            updateFeedbackMessageSpanContent('view-workers-block', data);
         });
     }    
 }
-document.querySelector('#students-rows-filter-bar').addEventListener('keyup', handleSearch);
-const modifyStudentButton = document.querySelector('#modify-student-btn');
-modifyStudentButton.addEventListener('click', showModifyStudentForm);
+document.querySelector('#workers-rows-filter-bar').addEventListener('keyup', handleSearch);
+const modifyWorkerButton = document.querySelector('#modify-worker-btn');
+modifyWorkerButton.addEventListener('click', showModifyWorkerForm);
 
-const modifyStudentForm = document.forms['modify_student'];
-modifyStudentForm.classList.add('hidden');
-modifyStudentForm.addEventListener('submit', handleModifyStudentSubmission);
-modifyStudentForm.cf.addEventListener('keyup', handleCfInput);
-modifyStudentForm.name.addEventListener('keyup', handleNameInput);
-modifyStudentForm.surname.addEventListener('keyup', handleSurnameInput);
-modifyStudentForm.email.addEventListener('keyup', handleEmailInput);
-modifyStudentForm.date.addEventListener('change', handleDateInput);
+const modifyWorkerForm = document.forms['modify_worker'];
+modifyWorkerForm.classList.add('hidden');
+modifyWorkerForm.addEventListener('submit', handleModifyWorkerSubmission);
+
+const workerCfInputField = modifyWorkerForm.cf;
+workerCfInputField.addEventListener('keyup', handleCfInput);
+
+const workerNameInputField = modifyWorkerForm.name;
+workerNameInputField.addEventListener('keyup', handleNameInput);
+
+const workerSurnameInputField = modifyWorkerForm.surname;
+workerSurnameInputField.addEventListener('keyup', handleSurnameInput);
+
+const workerEmailInputField = modifyWorkerForm.email;
+workerEmailInputField.addEventListener('keyup', handleEmailInput);
+
+const workerDateInputField = modifyWorkerForm.date;
+workerDateInputField.addEventListener('change', handleDateInput);
 

@@ -1,9 +1,9 @@
 <div class='content-block' id='view-students-block'>
     <h2>visualizza studenti</h2>
     <input type="text" name="rows_filter_search" id="students-rows-filter-bar" placeholder="Filter Students">
-    <select name="filter_value" id="filter-options"></select>
+    <select name="filter_value" id="students-filter-options"></select>
     <a class='btn' id="modify-student-btn">Modifica</a>
-    <div id='table-block'></div>
+    <div id='students-table-block'></div>
     <form name="modify_student" method="post">
         <span class="insert-feedback-message"></span>  
         <label>ID 

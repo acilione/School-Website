@@ -22,6 +22,11 @@ function handleSelectContentBlock(event)
         document.querySelector('#add-teaching-form-block').classList.remove('hidden');
         updateOptions();
     }
+    else if (event.target.innerHTML.toLowerCase() === "visualizza lavoratori")
+    {
+        document.querySelector('#view-workers-block').classList.remove('hidden');
+        updateWorkersList();
+    }
 }
 
 buttonsBlock = document.querySelectorAll('#buttons-block .btn');

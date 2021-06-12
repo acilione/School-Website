@@ -57,22 +57,10 @@ function addListenersAddWorkerForm ()
 {
     const addWorkerForm = document.querySelector('form[name=add_worker]')
     addWorkerForm.addEventListener('submit', handleWorkerSubmission);
-        
-    const cfInputField = addWorkerForm.cf;
-    cfInputField.addEventListener('keyup', handleCfInput);
-    
-    const nameInputField = addWorkerForm.name;
-    nameInputField.addEventListener('keyup', handleNameInput);
-    
-    const surnameInputField = addWorkerForm.surname;
-    surnameInputField.addEventListener('keyup', handleSurnameInput);
-    
-    const emailInputField = addWorkerForm.email;
-    emailInputField.addEventListener('keyup', handleEmailInput);
-    
-    const dateInputField = addWorkerForm.date;
-    dateInputField.addEventListener('change', handleDateInput);
-
-    const beginningDateInputField = addWorkerForm.beginning_date;
-    beginningDateInputField.addEventListener('change', handleBeginningDateInput);
+    addWorkerForm.cf.addEventListener('keyup', handleCfInput);
+    addWorkerForm.name.addEventListener('keyup', handleNameInput);
+    addWorkerForm.surname.addEventListener('keyup', handleSurnameInput);
+    addWorkerForm.email.addEventListener('keyup', handleEmailInput);
+    addWorkerForm.date.addEventListener('change', handleDateInput);
+    addWorkerForm.beginning_date.addEventListener('change', handleBeginningDateInput);
 }
