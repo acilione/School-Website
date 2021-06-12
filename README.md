@@ -30,7 +30,7 @@ Profilo segretario:
 
 -   aggiunta/modifica studente;
 -   aggiunta/modifica lavoratore (preside, docente, segretario);
--   aggiunta insegnamento;
+-   aggiunta/cancellazione insegnamento;
 
 Nella homepage sono mostrati dinamicamente:
 

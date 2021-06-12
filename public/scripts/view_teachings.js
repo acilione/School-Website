@@ -81,7 +81,7 @@ function filterTeachingsTableRows(string, column_class)
 function handleTeachingsSearch(event) 
 {
     const filter_opt = document.querySelector('#teachings-filter-options').value;
-    filterWorkersTableRows(event.target.value, filter_opt);
+    filterTeachingsTableRows(event.target.value, filter_opt);
 }
 function postDeleteTeachingsData(checkedIDs)
 {
