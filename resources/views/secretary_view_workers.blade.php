@@ -31,15 +31,19 @@
           <span class='input_error hidden date_error'>formato data errato</span>
           <input type="date" name="date" />
         </label>
+        <label>Sesso
         <select name="sex">
             <option value="M">M</option>
             <option value="F">F</option>
         </select>
+        </label>
+        <label>Ruolo
         <select name="role">
             <option value="preside">preside</option>
             <option value="segretario">segretario</option>
             <option value="docente">docente</option>
         </select>
+        </label>
         <label>Data Inizio Lavoro
           <span class='input_error hidden beginning_date_error'>formato data errato</span>
           <input type="date" name="beginning_date" />
