@@ -33,7 +33,17 @@
             ->get();
             echo json_encode($workers);
         }
-
+        public function getAllTeachings()
+        {
+            $teachings = Teaching::join('lavoratore', 'lavoratore.id', '=', 'insegnamento.lavoratore')
+            ->join('classe', 'classe.id', '=', 'insegnamento.classe')
+            ->join('disciplina', 'disciplina.id', '=', 'insegnamento.disciplina')
+            ->join('giorni_settimana', 'giorni_settimana.id', '=', 'insegnamento.giorno_settimana')
+            ->join('orari', 'orari.id', '=', 'insegnamento.ora')
+            ->select('insegnamento.id', 'cf', 'nome', 'cognome', 'numero', 'sezione', 'nome_disciplina', 'giorno', 'orario')
+            ->get();
+            echo json_encode($teachings); 
+        }
         public function getClassStudents(Request $request)
         {
             if((session()->get('role') === 'docente') && !empty($request->numero) && !empty($request->sezione))

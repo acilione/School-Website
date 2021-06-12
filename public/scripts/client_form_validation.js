@@ -83,13 +83,6 @@ function handleEmailInput(event)
         });
     }
 }
-function onResponse(response) 
-{
-    if (response.ok)
-        return response.json();
-    else 
-        return Promise.reject(response);
-}
 function cfTaken(cf_string)
 {
     return fetch('cf-availability-check', {

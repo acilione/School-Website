@@ -43,7 +43,7 @@ function updateWorkersList()
             table.appendChild(tableRow);
             const btn = document.createElement('input');
             btn.setAttribute('type', 'radio');
-            btn.setAttribute('name', 'student-selection');
+            btn.setAttribute('name', 'worker-selection');
             btn.setAttribute('value', d['id']);
             btn.addEventListener('change', checkRadioButtonSelectedShowModifyBtn);
             tableRow.appendChild(btn);
@@ -80,7 +80,7 @@ function filterWorkersTableRows(string, column_class)
         }
     }
 }
-function handleSearch(event) 
+function handleWorkersSearch(event) 
 {
     const filter_opt = document.querySelector('#workers-filter-options').value;
     filterWorkersTableRows(event.target.value, filter_opt);
@@ -176,7 +176,7 @@ function handleModifyWorkerSubmission(event)
         });
     }    
 }
-document.querySelector('#workers-rows-filter-bar').addEventListener('keyup', handleSearch);
+document.querySelector('#workers-rows-filter-bar').addEventListener('keyup', handleWorkersSearch);
 const modifyWorkerButton = document.querySelector('#modify-worker-btn');
 modifyWorkerButton.addEventListener('click', showModifyWorkerForm);
 

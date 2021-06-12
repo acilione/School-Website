@@ -27,6 +27,11 @@ function handleSelectContentBlock(event)
         document.querySelector('#view-workers-block').classList.remove('hidden');
         updateWorkersList();
     }
+    else if (event.target.innerHTML.toLowerCase() === "visualizza insegnamenti")
+    {
+        document.querySelector('#view-teachings-block').classList.remove('hidden');
+        updateTeachingsList();
+    }
 }
 
 buttonsBlock = document.querySelectorAll('#buttons-block .btn');

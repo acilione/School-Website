@@ -1,5 +1,5 @@
 <div class="content-block" id="view-workers-block">
-    <h2>aggiungi lavoratore</h2>
+    <h2>visualizza lavoratori</h2>
     <input type="text" name="rows_filter_search" id="workers-rows-filter-bar" placeholder="Filter Workers">
     <select name="filter_value" id="workers-filter-options"></select>
     <a class='btn' id="modify-worker-btn">Modifica</a>

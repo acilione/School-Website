@@ -35,6 +35,7 @@ Route::post('/worker-addition', [SecretaryHomeController::class, 'addWorker']);
 Route::post('/student-modification', [SecretaryHomeController::class, 'modifyStudent']);
 Route::post('/teaching-addition', [SecretaryHomeController::class, 'addTeaching']);
 Route::post('/worker-modification', [SecretaryHomeController::class, 'modifyWorker']);
+Route::post('/teachings-deletion', [SecretaryHomeController::class, 'deleteTeachings']);
 
 Route::get('/teacher-home', [TeacherHomeController::class, 'showTeacherHome']);
 Route::post('/student-mark-addition', [TeacherHomeController::class, 'addStudentMark']);
@@ -54,6 +55,7 @@ Route::get('/harvardMuseumAPI', [ExternalAPIsController::class, 'harvardMuseumAP
 
 Route::get('/all-students', [InternalAPIController::class, 'getAllStudents']);
 Route::get('/all-workers', [InternalAPIController::class, 'getAllWorkers']);
+Route::get('/all-teachings', [InternalAPIController::class, 'getAllTeachings']);
 Route::post('/class-students', [InternalAPIController::class, 'getClassStudents']);
 Route::get('/teachers', [InternalAPIController::class, 'getTeachers']);
 Route::get('/classes', [InternalAPIController::class, 'getClasses']);

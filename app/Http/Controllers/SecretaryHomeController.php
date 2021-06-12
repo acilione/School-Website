@@ -308,5 +308,20 @@
             else
                 echo json_encode('Inserire codice fiscale!');
         }
+        public function deleteTeachings(Request $request)
+        {
+            $ids_array = $request->all()['ids'];
+            //var_dump( $request->all()['ids']);
+           foreach ($ids_array as $id)
+            {
+                try {
+                    Teaching::find($id)->delete();
+                } catch (QueryException $e) {
+                    echo json_encode($e->errorInfo['2']);
+                    exit;
+                }
+            }
+            echo json_encode('insegnamenti cancellati correttamente!');
+        }
     }
 ?>

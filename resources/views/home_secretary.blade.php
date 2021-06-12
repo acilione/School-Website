@@ -11,6 +11,7 @@
     <script src="{{ asset('scripts/view_students.js') }}" defer></script>
     <script src="{{ asset('scripts/view_workers.js') }}" defer></script>
     <script src="{{ asset('scripts/add_teaching.js') }}" defer></script>
+    <script src="{{ asset('scripts/view_teachings.js') }}" defer></script>
 @endsection
 
 @section('buttons')
@@ -20,6 +21,7 @@
         <a class='btn'>Visualizza Studenti</a>
         <a class='btn'>Visualizza Lavoratori</a>
         <a class='btn'>Aggiungi Insegnamento</a>
+        <a class='btn'>Visualizza Insegnamenti</a>
     </div>
 @endsection
 @section('contents')
@@ -28,4 +30,5 @@
     @include('add_teaching_form')
     @include('secretary_view_students')
     @include('secretary_view_workers')
+    @include('secretary_view_teachings')
 @endsection
