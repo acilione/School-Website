@@ -32,7 +32,7 @@ Profilo segretario:
 -   aggiunta/modifica lavoratore (preside, docente, segretario);
 -   aggiunta insegnamento;
 
-Nella homepage sono mostrati dinamicamenti:
+Nella homepage sono mostrati dinamicamente:
 
 -   sedi;
 -   docenti;
