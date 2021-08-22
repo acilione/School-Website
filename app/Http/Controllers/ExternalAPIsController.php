@@ -39,7 +39,7 @@
         }
         public function sendGridAPI($email, $visible_password)
         {
-            $SENDGRID_API_KEY='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';
+            $SENDGRID_API_KEY= env(SENDGRID_API_KEY, "default");
             $curl = curl_init();
             $subject = "WebProgramming 2021 - School Website - auth password"; 
             curl_setopt_array($curl, array(
