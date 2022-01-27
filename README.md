@@ -1,6 +1,6 @@
 # University of Catania - Web Programming - Homework 2
 
-## Sito Web realizzato mediante utilizzo del Framework Laravel
+## Sito Web realizzato mediante il Framework Laravel (backend) e JS Vanilla (frontend)
 
 ## Feauture:
 
