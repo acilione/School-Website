@@ -1,52 +1,51 @@
 # University of Catania - Web Programming - Homework 2
 
-## Sito Web realizzato mediante il Framework Laravel (backend) e JS Vanilla (frontend)
+## Website developed in Laravel Framework (backend) and Vanilla JS (frontend)
 
 ## Feauture:
 
--   4 tipologie di login: studente, preside, docente, segretario;
--   logout;
+- 4 types of login: student, principal, teacher, secretary;
+- logout;
 
--   Signup come amministratore (Lavoratore - segretario);
+- Signup as administrator (Worker - secretary);
 
-Profilo studente:
+Student profile:
 
--   visualizzazione voti;
--   visualizzazione presenze;
--   visualizzazione orario scolastico;
--   messaggistica tra gli studenti appartenenti alla stessa classe;
+- display votes;
+- attendance display;
+- display school timetable;
+- messaging between students belonging to the same class;
 
-Profilo preside:
+Principal profile:
 
--   aggiunta circolari;
+- addition of circulars;
 
-Profilo docente:
+Teacher profile:
 
--   aggiunta/modifica voti;
--   aggiunta/modifica presenze;
--   visualizzazione orario scolastico;
+- adding/modifying votes;
+- addition/modification of attendance;
+- display school timetable;
 
-Profilo segretario:
+Secretary profile:
 
--   aggiunta/modifica studente;
--   aggiunta/modifica lavoratore (preside, docente, segretario);
--   aggiunta/cancellazione insegnamento;
+- adding/modifying student;
+- addition/modification of worker (principal, teacher, secretary);
+- adding/deleting teaching;
 
-Nella homepage sono mostrati dinamicamente:
+On the homepage the following are dynamically displayed:
 
--   sedi;
--   docenti;
--   circolari;
+- locations;
+- teachers;
+- circulars;
 
-E' possibile in qualsiasi momento (sia avendo effettuato login che non) accedere alla sezione attivita' dalla navbar, all'interno della quale e' possibile utilizzare
-due API REST:
+It is possible at any time (whether logged in or not) to access the activities section from the navbar, within which it is possible to use
+two REST APIs:
 
--   mathJS, che permette di risolvere equazioni;
--   Harvard Art Museums API, che permette di accedere alle gallerie dell'harvard art museum;
+- mathJS, which allows you to solve equations;
+- Harvard Art Museums API, which allows access to the Harvard Art Museum galleries;
 
-Note:
+Notes:
 
--   configurazione nome database nel file dbconfig.php. Nome attuale: "scuola3".
--   All'aggiunta di utenti da parte del segretario (sia studente che lavoratore) inserie mail valida, in quanto la password per accedere col nuovo account inserito verra'
-    inviata via mail tramite API SendGrid.
--   nella homepage, nella sezione 'docenti' sono listati i docenti che hanno un insegnamento attivo, per visualizzare altri docenti oltre a quello inserito mediante la query all'interno del file 'struttura.sql', e' necesssario aggiungere un docente dalla sezione 'aggiungi lavoratore' e un insegnamento relativo al docente dalla sezione 'aggiungi insegnamento', entrambe accessibili dal profilo di un segretario.
+- database name configuration in the dbconfig.php file. Current name: "school3".
+- When the secretary adds users (both student and worker) enter a valid email address, as the password to access the new account entered will be sent via email via SendGrid API.
+- on the homepage, in the 'teachers' section, the teachers who have active teaching are listed. To view other teachers in addition to the one inserted through the query in the 'structure.sql' file, it is necessary to add a teacher from the 'section add worker' and a teaching related to the teacher from the 'add teaching' section, both accessible from a secretary's profile.
